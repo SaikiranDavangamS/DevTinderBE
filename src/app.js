@@ -4,15 +4,44 @@ const express = require("express");
 const app = express();
 
 
-app.use("/",(req,res) => {
-    res.send("Namaste Saikiran")
+
+
+// app.use("/hello",(req,res) => {
+//     res.send("Hello from Namaste Node js")
+// })
+// app.use("/dashboard",(req,res) => {
+//     res.send("Hello from Namaste Node js Dashboard")
+// })
+
+// app.use("/test",(req,res) => {
+//     res.send("Test route for validation")
+// })
+
+
+// This will match only "get" HTTP method API calls to /user
+app.get("/user",(req,res) => {
+    res.send([
+        {firstName:"Saikiran",
+        lastName:"Davangam Sreedhar"
+    },
+        {firstName:"Saikiran",
+        lastName:"Davangam Sreedhar"
+    },
+        {firstName:"Saikiran",
+        lastName:"Davangam Sreedhar"
+    },])
 })
 
-app.use("/hello",(req,res) => {
-    res.send("Hello from Namaste Node js")
+app.post("/user",(req,res)=>{
+    res.send("Data saved successfully to Database!")
 })
-app.use("/dashboard",(req,res) => {
-    res.send("Hello from Namaste Node js Dashboard")
+app.delete("/user",(req,res)=>{
+    res.send("Deleted Data saved successfully from Database!")
+})
+
+// This will match all the HTTP methods API calls to /test
+app.use("/",(req,res) => {
+    res.send("Namaste Saikiran")
 })
 
 
