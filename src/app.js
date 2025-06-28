@@ -19,7 +19,8 @@ const app = express();
 
 
 // This will match only "get" HTTP method API calls to /user
-app.get("/user",(req,res) => {
+app.get("/user/:userID/:userName/:password",(req,res) => {
+    console.log("req>",req.params)
     res.send([
         {firstName:"Saikiran",
         lastName:"Davangam Sreedhar"
