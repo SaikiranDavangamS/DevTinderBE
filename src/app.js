@@ -4,31 +4,24 @@ const express = require("express");
 const app = express();
 
 
+const {adminAuth,userAuth} = require("./middleWares/auth")
 
+app.use("/admin",adminAuth)
 
+app.post("/user/login",(req,res,next) => {
+    res.send("User logged in successfully!!!")
+})
 
-app.use("/user",
-    // Route Handler
-    (req,res,next) => {
-        console.log("RouteHandler1")
-        next();
-        // res.send("1st Response")
+app.get("/user",userAuth,(req,res)=>{
+    res.send("User Data Sent")
+})
+app.get("/admin/getAllData",(req,res) => {
+    res.send("All Data fetched")
+})
 
-
-},(req,res,next) => {
-    console.log("RouteHandler2")
-          // res.send("2nd Response")
-    next()
-},(req,res,next) => {
-    console.log("RouteHandler2")
-    //   res.send("3rd Response")
-    next()
-},(req,res,next) => {
-    console.log("RouteHandler2")
-    //   res.send("4th Response")
-        next()
-}
-)
+app.get("/admin/DeleteUser",(req,res)=>{
+    res.send("User Deleted successfully")
+})
 
 // This will match all the HTTP methods API calls to /test
 // app.use("/",(req,res) => {
